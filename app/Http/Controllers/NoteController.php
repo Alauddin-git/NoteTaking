@@ -41,7 +41,37 @@ class NoteController extends Controller
         return redirect()->route('user.note.list');
     }
 
-    // note delete
+    public function noteEdit(Request $request, Note $note)
+    {
+        $data['getNote'] = $note;
+        return view('edit', $data);
+    }
+
+    public function noteUpdate(Request $request, Note $note)
+    {
+        
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|max:255',
+            'content' => 'required|string', 
+        ]);
+
+        if ($validator->fails()) {  
+            $firstErrorMessage = $validator->errors()->first();
+            toastr()->adderror($firstErrorMessage);
+            return redirect()->back()
+            ->withInput();
+        }
+
+        if ($validator->fails()) {  
+            $firstErrorMessage = $validator->errors()->first();
+            toastr()->adderror($firstErrorMessage);
+            return redirect()->back()
+                             ->withInput();
+        }
+        $note->update($request->all());
+        return view('dashboard');
+    }
+
     public function noteDelete(Note $note)
     {  
         $note->delete();

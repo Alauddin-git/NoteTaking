@@ -70,7 +70,7 @@ class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-cente
                             <td>{{ date('d-m-Y h:i A', strtotime($getNote->created_at)) }}</td>
                             <td>{{ date('d-m-Y h:i A', strtotime($getNote->updated_at)) }}</td>
                             <td>
-                                <a href="" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="{{ route('user.note.edit', $getNote->id) }}"" class="btn btn-primary btn-sm">Edit</a>
                                 <a href="{{ route('user.note.delete', $getNote->id) }}" class="btn btn-danger btn-sm">Delete</a>
                             </td>
                         </tr>
