@@ -65,7 +65,8 @@ class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-cente
                     @foreach ($getNotes as $getNote)
                         <tr>
                             <td>{{ $user++ }}</td>
-                            <td>{{ Str::words($getNote->title, 30, '...') }}</td>                            <td>{{ $getNote->content }}</td>
+                            <td>{{ Str::limit($getNote->title, 10) }}</td>                    
+                            <td>{{ Str::limit($getNote->content, 50) }}</td>   
                             <td>{{ date('d-m-Y h:i A', strtotime($getNote->created_at)) }}</td>
                             <td>{{ date('d-m-Y h:i A', strtotime($getNote->updated_at)) }}</td>
                             <td>
