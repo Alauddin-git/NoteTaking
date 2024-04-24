@@ -54,20 +54,24 @@ class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-cente
                     <th scope="col">Content</th>
                     <th scope="col">Created At</th>
                     <th scope="col">Updated At</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
                      @php
                      $user = 0;
+                     use Illuminate\Support\Str;
                     @endphp
                     @foreach ($getNotes as $getNote)
-                    @php
-                    // dump($getNotes);
-                    @endphp
                         <tr>
                             <td>{{ $user++ }}</td>
-                            {{-- <td>{{ $getNote->title }}</td>
-                            <td>{{ $getNote->content }}</td> --}}
+                            <td>{{ Str::words($getNote->title, 30, '...') }}</td>                            <td>{{ $getNote->content }}</td>
+                            <td>{{ date('d-m-Y h:i A', strtotime($getNote->created_at)) }}</td>
+                            <td>{{ date('d-m-Y h:i A', strtotime($getNote->updated_at)) }}</td>
+                            <td>
+                                <a href="" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="{{ route('user.note.delete', $getNote->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
                         </tr>
                     @endforeach
             </tbody>

@@ -41,12 +41,6 @@ class AuthController extends Controller
     // user login
     public function userLogin(Request $request)
     {  
-        // $validator = Validator::make($request->all(), [
-        //     'email' => 'required',
-        //     'password' => 'required',
-        // ]);
-
-           
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             toastr()->addsuccess('You Successfully Loggin');

@@ -12,7 +12,6 @@ class NoteController extends Controller
     public function noteList(Request $requet)
     {
         $data['getNotes'] = Note::getNote(Auth::user()->id);
-        // dd($data['getNotes']);
         return view('dashboard', $data);
     }
 
@@ -21,7 +20,7 @@ class NoteController extends Controller
         return view('create');
     }
 
-    public function notezInsert(Request $request)
+    public function noteInsert(Request $request)
     {  
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
@@ -35,8 +34,18 @@ class NoteController extends Controller
             ->withInput();
         }
 
-        Note::create($request->all());
+        $note = Note::make($request->except('user_id'));
+        $note->user_id = Auth::user()->id;
+        $note->save();
         toastr()->addsuccess('Your Note Successfully Created');
+        return redirect()->route('user.note.list');
+    }
+
+    // note delete
+    public function noteDelete(Note $note)
+    {  
+        $note->delete();
+        toastr()->addsuccess('Your Note Successfully Deleted');
         return redirect()->route('user.note.list');
     }
 }

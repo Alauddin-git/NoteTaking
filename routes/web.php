@@ -19,7 +19,10 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('note/list', [NoteController::class, 'noteList'])->name('note.list');
     Route::get('note/create', [NoteController::class, 'noteCreate'])->name('note.create');
-    Route::post('note/add', [NoteController::class, 'notezInsert'])->name('note.add');
+    Route::post('note/add', [NoteController::class, 'noteInsert'])->name('note.insert');
+    Route::get('note/edit/{note}', [NoteController::class, 'noteEdit'])->name('note.edit');
+    Route::post('note/update/{note}', [NoteController::class, 'noteUpdate'])->name('note.update');
+    Route::get('note/delete/{note}', [NoteController::class, 'noteDelete'])->name('note.delete');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 });

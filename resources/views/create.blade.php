@@ -12,7 +12,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="{{ route('user.note.add') }}" method="post">
+                <form action="{{ route('user.note.insert') }}" method="post">
                     @csrf
                     <div class="card-body">
                         <div class="form-group mb-3">
