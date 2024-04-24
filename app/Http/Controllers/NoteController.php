@@ -59,17 +59,11 @@ class NoteController extends Controller
             $firstErrorMessage = $validator->errors()->first();
             toastr()->adderror($firstErrorMessage);
             return redirect()->back()
-            ->withInput();
-        }
-
-        if ($validator->fails()) {  
-            $firstErrorMessage = $validator->errors()->first();
-            toastr()->adderror($firstErrorMessage);
-            return redirect()->back()
                              ->withInput();
         }
         $note->update($request->all());
-        return view('dashboard');
+        toastr()->addsuccess('Your Note Successfully Updated');
+        return redirect()->route('user.note.list');
     }
 
     public function noteDelete(Note $note)

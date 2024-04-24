@@ -77,6 +77,9 @@ class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-cente
                     @endforeach
             </tbody>
         </table>
+        <div style="padding: 10px; float:right">
+            {!! $getNotes->appends(Request::except('page'))->links() !!}
+        </div>
     </div>
     <!-- /.card-body -->
 </div>

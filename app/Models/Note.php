@@ -16,7 +16,7 @@ class Note extends Model
 
     static function getNote($user_id)
     {  
-        return self::where('user_id', $user_id)->get();
+        return self::where('user_id', $user_id)->paginate(2);
     }
     
 }
