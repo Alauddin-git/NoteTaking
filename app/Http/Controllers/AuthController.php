@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -34,5 +36,32 @@ class AuthController extends Controller
 
         toastr()->addsuccess('You Successfully Registered');
         return redirect()->to('/');
+    }
+
+    // user login
+    public function userLogin(Request $request)
+    {  
+        // $validator = Validator::make($request->all(), [
+        //     'email' => 'required',
+        //     'password' => 'required',
+        // ]);
+
+           
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            toastr()->addsuccess('You Successfully Loggin');
+            return redirect()->intended(route('user.note.list'));      
+              }
+  
+        return redirect()->to('/')->withError('Oppes! You have entered invalid credentials');
+    }
+
+    // user logout
+    public function logout()
+    {
+        Session::flush();
+        Auth::logout();
+  
+        return Redirect('/');
     }
 }

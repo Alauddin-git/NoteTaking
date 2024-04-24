@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
-     <!-- Include Toastr CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 </head>
 
 <body>
@@ -19,11 +18,12 @@
                         <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                         <p class="text-white-50 mb-5">Please enter your login and password!</p>
                         <form class="form" action="{{ route('login.operation') }}" method="post">
+                            @csrf
                             <div class="form-outline mb-4">
-                                <input type="email" placeholder="Email Address" class="form-control form-control-lg">
+                                <input type="email" name="email" value="{{ old('email') }}" placeholder="Email Address" class="form-control form-control-lg">
                             </div>
                             <div class="form-outline mb-4">
-                                <input type="password" placeholder="Password" class="form-control form-control-lg">
+                                <input type="password" name="password" placeholder="Password" class="form-control form-control-lg">
                             </div>
                             <div class="form-outline mb-4 d-grid gap-2">
                                 <button type="submit" class="btn btn-info">Login </button>
@@ -39,15 +39,7 @@
             </div>
         </div>
     </div>
- <!-- Include Toastr JavaScript -->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" ></script>
- <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        @if(session('error'))
-            toastr.error('{{ session('error') }}');
-        @endif
-    });
-</script></body>
+</body>
 
 </html>
