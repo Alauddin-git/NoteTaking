@@ -66,8 +66,9 @@ class NoteController extends Controller
         return redirect()->route('user.note.list');
     }
 
-    public function noteDelete(Note $note)
+    public function noteDelete($id)
     {  
+        $note = Note::find($id);
         $note->delete();
         toastr()->addsuccess('Your Note Successfully Deleted');
         return redirect()->route('user.note.list');

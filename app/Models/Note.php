@@ -14,9 +14,22 @@ class Note extends Model
         'content'
     ];
 
-    static function getNote($user_id)
-    {  
-        return self::where('user_id', $user_id)->paginate(2);
+public static function getNote($user_id)
+{  
+    $note = self::where('user_id', $user_id);
+
+    if (!empty(request('title'))) {
+        $title = request('title');
+        $note = $note->where('title', 'LIKE', '%'. $title. '%');
     }
+
+    if (!empty(request('content'))) {
+        $content = request('content');
+        $note = $note->where('content', 'LIKE', '%'. $content. '%');
+    }
+
+    return $note->paginate(3);
+}
+
     
 }

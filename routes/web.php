@@ -9,7 +9,7 @@ use App\Http\Controllers\NoteController;
 
 // user authentication
 Route::group(['middleware' => 'guest'], function () {
-    Route::view('/', 'auth.login');
+    Route::view('/', 'auth.login')->name('');
     Route::post('/login', [AuthController::class, 'userLogin'])->name('login.operation');
     Route::view('/register', 'auth.register');
     Route::post('/register', [AuthController::class, 'userRegistration'])->name('register.operation');
@@ -22,7 +22,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], func
     Route::post('note/add', [NoteController::class, 'noteInsert'])->name('note.insert');
     Route::get('note/edit/{note}', [NoteController::class, 'noteEdit'])->name('note.edit');
     Route::post('note/update/{note}', [NoteController::class, 'noteUpdate'])->name('note.update');
-    Route::get('note/delete/{note}', [NoteController::class, 'noteDelete'])->name('note.delete');
+    Route::get('note/delete/{id}', [NoteController::class, 'noteDelete'])->name('note.delete');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 });

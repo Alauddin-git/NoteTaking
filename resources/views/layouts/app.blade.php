@@ -9,6 +9,8 @@
     <meta name="generator" content="Hugo 0.104.2">
     <title>Note Taking</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/dashboard/">
+    <link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.min.css" rel="stylesheet">
     <link href="{{ asset('assets') }}/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="{{ asset('assets') }}/dist/css/custom_style.css" rel="stylesheet">
@@ -24,9 +26,13 @@
             </main>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('assets') }}/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+    <!-- SweetAlert2 -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets') }}/dist/js/dashboard.js"></script>
+    @yield('script')
 </body>
 
 </html>
