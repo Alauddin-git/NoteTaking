@@ -8,12 +8,10 @@ use App\Http\Controllers\NoteController;
 
 
 // user authentication
-Route::group(['middleware' => 'guest'], function () {
     Route::view('/', 'auth.login')->name('');
     Route::post('/login', [AuthController::class, 'userLogin'])->name('login.operation');
     Route::view('/register', 'auth.register');
     Route::post('/register', [AuthController::class, 'userRegistration'])->name('register.operation');
-});
 
 // user note
 Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], function () {
