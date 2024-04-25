@@ -8,7 +8,7 @@ use App\Http\Controllers\NoteController;
 
 
 // user authentication
-    Route::view('/', 'auth.login')->name('');
+    Route::view('/', 'auth.login');
     Route::post('/login', [AuthController::class, 'userLogin'])->name('login.operation');
     Route::view('/register', 'auth.register');
     Route::post('/register', [AuthController::class, 'userRegistration'])->name('register.operation');
